@@ -1,3 +1,4 @@
+package kohonem;
 
 public class SigmoidActivationFunction implements ActivationFunction {
 

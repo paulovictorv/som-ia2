@@ -5,18 +5,33 @@ import java.util.List;
 
 public class DataPoint {
 	
-	private List<Double> dataPoints;
+	private List<Double> dimensions;
 	
 	public DataPoint() {
-		dataPoints = new ArrayList<Double>();
+		dimensions = new ArrayList<Double>();
 	}
 	
 	public void addDimension(String value){
-		dataPoints.add(Double.parseDouble(value));
+		dimensions.add(Double.parseDouble(value));
+	}
+
+	public double getDimension(int i) {
+		return dimensions.get(i);
 	}
 	
 	public int countDimensions(){
-		return dataPoints.size();
+		return dimensions.size();
 	}
+
+	public Double calculateDistance(double[] ds) {
+		double distance = 0.0;
+		
+		for(int j = 0; j < ds.length; j++){
+			distance += Math.pow(ds[j] - dimensions.get(j), 2);
+		}
+		
+		return distance;
+	}
+
 		
 }

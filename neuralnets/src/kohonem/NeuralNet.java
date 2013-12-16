@@ -1,3 +1,4 @@
+package kohonem;
 
 public class NeuralNet {
 
@@ -20,14 +21,15 @@ public class NeuralNet {
 		double[] z = new double[input.length];
 		
 		//Feedforward
-		for(int j = 0; j < z.length; j++){
+		for(int node = 0; node < weight.length; node++){
 			double sum = 0.0;
 			
-			for (int i = 0; i < z.length; i++){
-				sum += input[i] * weight[i][j];
+			for (int nodeWeigth = 0; nodeWeigth < z.length; nodeWeigth++){
+				int dimension = nodeWeigth;
+				sum += input[dimension] * weight[node][nodeWeigth];
 			}
 			
-			z[j] = function.activate(sum);
+			z[node] = function.activate(sum);
 		}
 		
 		
