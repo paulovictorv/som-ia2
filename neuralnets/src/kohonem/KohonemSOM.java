@@ -1,5 +1,6 @@
 package kohonem;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Set;
 
@@ -25,13 +26,18 @@ public class KohonemSOM {
 	public KohonemSOM(File trainset, int radius, LearningRate learning, int maxClusters) {
 		train(trainset, radius, learning, maxClusters);
 	}
-
 	
 	public void train(File trainset, int radius, LearningRate learning, int maxClusters){
 		DataPointReader reader = new DataPointReader();
 		dataPoints = reader.readFromFile(trainset);
+		this.learning = learning;
+		this.maxClusters = maxClusters;
 		double[][] trainedWeights = doTrain();
 		net = new NeuralNet(trainedWeights);
+		System.out.println("The clusters are: ");
+		for (double[] cluster : trainedWeights){
+			System.out.println(Arrays.toString(cluster));
+		}
 	}
 	
 	public double[] classify(double[] point){
